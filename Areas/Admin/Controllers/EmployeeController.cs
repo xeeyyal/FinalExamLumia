@@ -72,7 +72,7 @@ namespace FinalExamLumia.Areas.Admin.Controllers
         public async Task<IActionResult> Update(int id)
         {
             if (id <= 0) return BadRequest();
-            Employee employee=await _context.Employees.FirstOrDefaultAsync(e=> e.Id == id);
+            Employee? employee=await _context.Employees.FirstOrDefaultAsync(e=> e.Id == id);
             if (employee == null) return NotFound();
 
             UpdateEmployeeVm update = new UpdateEmployeeVm
@@ -114,7 +114,7 @@ namespace FinalExamLumia.Areas.Admin.Controllers
                     return View(vm);
                 }
                 string newImage = await vm.Photo.CreateFileAsync(_env.WebRootPath, "assets","img", "team");
-                existed.Image.DeleteFile(_env.WebRootPath, "assets", "team");
+                existed.Image.DeleteFile(_env.WebRootPath, "assets", "img","team");
                 existed.Image = newImage;
             }
             existed.Name = vm.Name;
