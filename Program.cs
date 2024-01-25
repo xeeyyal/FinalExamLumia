@@ -1,5 +1,6 @@
 using FinalExamLumia.DAL;
 using FinalExamLumia.Models;
+using FinalExamLumia.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,12 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
     opt.Password.RequireNonAlphanumeric = false;
 
 }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+builder.Services.AddScoped<Layoutservice>();
+builder.Services.AddScoped<HomeService>();
+builder.Services.ConfigureApplicationCookie(cfg =>
+{
+    cfg.LoginPath = $"/Admin/Account/Login/{cfg.ReturnUrlParameter}";
+});
 var app = builder.Build();
 
 app.UseRouting();

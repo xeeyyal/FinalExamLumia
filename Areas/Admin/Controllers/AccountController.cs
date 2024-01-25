@@ -48,7 +48,6 @@ namespace FinalExamLumia.Areas.Admin.Controllers
                     return View(register);
                 }
             }
-            await _userManager.AddToRoleAsync(user, UserRole.Member.ToString());
             await _signInManager.SignInAsync(user, isPersistent: false);
             return RedirectToAction("Index", "Home", new { Area = "" });
         }

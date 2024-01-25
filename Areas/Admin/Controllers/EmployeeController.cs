@@ -2,12 +2,15 @@
 using FinalExamLumia.DAL;
 using FinalExamLumia.Models;
 using FinalExamLumia.Utilities.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FinalExamLumia.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin")]
+    [AutoValidateAntiforgeryToken]
     public class EmployeeController : Controller
     {
         private readonly AppDbContext _context;
@@ -114,6 +117,14 @@ namespace FinalExamLumia.Areas.Admin.Controllers
                 existed.Image.DeleteFile(_env.WebRootPath, "assets", "team");
                 existed.Image = newImage;
             }
+            existed.Name = vm.Name;
+            existed.TwLink = vm.TwLink;
+            existed.FbLink = vm.FbLink;
+            existed.LinkedinLink = vm.LinkedinLink;
+            existed.InstaLink = vm.InstaLink;
+            existed.Position = vm.Position;
+            existed.Description = vm.Description;
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

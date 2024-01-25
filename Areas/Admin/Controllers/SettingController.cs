@@ -1,12 +1,16 @@
 ﻿using FinalExamLumia.Areas.Admin.ViewModels;
 using FinalExamLumia.DAL;
 using FinalExamLumia.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace FinalExamLumia.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+    [AutoValidateAntiforgeryToken]
     public class SettingController : Controller
     {
         private readonly AppDbContext _context;
@@ -31,7 +35,7 @@ namespace FinalExamLumia.Areas.Admin.Controllers
             {
                 return View(vm);
             }
-            bool result = await _context.Settings.AnyAsync(s => s.Key.ToLower().Trim() == s.Key.ToLower().Trim());
+            bool result = await _context.Settings.AnyAsync(s => s.Key.ToLower().Trim() == vm.Key.ToLower().Trim());
             if (result)
             {
                 ModelState.AddModelError("Key", "Key already is exists");
