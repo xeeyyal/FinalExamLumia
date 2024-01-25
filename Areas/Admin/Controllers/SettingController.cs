@@ -24,33 +24,33 @@ namespace FinalExamLumia.Areas.Admin.Controllers
             List<Setting> settings = await _context.Settings.ToListAsync();
             return View(settings);
         }
-        public IActionResult Create()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> Create(CreateSettingVm vm)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(vm);
-            }
-            bool result = await _context.Settings.AnyAsync(s => s.Key.ToLower().Trim() == vm.Key.ToLower().Trim());
-            if (result)
-            {
-                ModelState.AddModelError("Key", "Key already is exists");
-                return View(vm);
-            }
-            Setting setting = new Setting
-            {
-               Key = vm.Key,
-               Value = vm.Value
-            };
-            await _context.Settings.AddAsync(setting);
-            await _context.SaveChangesAsync();
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public async Task<IActionResult> Create(CreateSettingVm vm)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(vm);
+        //    }
+        //    bool result = await _context.Settings.AnyAsync(s => s.Key.ToLower().Trim() == vm.Key.ToLower().Trim());
+        //    if (result)
+        //    {
+        //        ModelState.AddModelError("Key", "Key already is exists");
+        //        return View(vm);
+        //    }
+        //    Setting setting = new Setting
+        //    {
+        //       Key = vm.Key,
+        //       Value = vm.Value
+        //    };
+        //    await _context.Settings.AddAsync(setting);
+        //    await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
-        }
+        //    return RedirectToAction(nameof(Index));
+        //}
         public async Task<IActionResult> Update(int id)
         {
             if (id <= 0) return BadRequest();
@@ -83,15 +83,15 @@ namespace FinalExamLumia.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Delete(int id)
-        {
-            if (id <= 0) return BadRequest();
-            Setting? setting = await _context.Settings.FirstOrDefaultAsync(s => s.Id == id);
-            if (setting == null) return NotFound();
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    if (id <= 0) return BadRequest();
+        //    Setting? setting = await _context.Settings.FirstOrDefaultAsync(s => s.Id == id);
+        //    if (setting == null) return NotFound();
 
-            _context.Settings.Remove(setting);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //    _context.Settings.Remove(setting);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
 }

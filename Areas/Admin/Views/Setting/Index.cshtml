@@ -6,7 +6,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Setting Table</h4>
-                  <a class="btn btn-primary" asp-action="create" asp-controller="setting">Create Setting</a>
+                  @*<a class="btn btn-primary" asp-action="create" asp-controller="setting">Create Setting</a>*@
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
@@ -41,7 +41,7 @@
                           </td>
                           <td>
                               <a class="btn btn-secondary" asp-action="update" asp-controller="setting" asp-route-id="@setting.Id">Update</a>
-                              <a class="btn btn-danger" asp-action="delete" asp-controller="setting" asp-route-id="@setting.Id">Delete</a>
+                              @*<a class="btn btn-danger" asp-action="delete" asp-controller="setting" asp-route-id="@setting.Id">Delete</a>*@
                           </td>
                         </tr>
                         }
