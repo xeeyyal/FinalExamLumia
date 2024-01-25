@@ -71,13 +71,6 @@ namespace FinalExamLumia.Areas.Admin.Controllers
             Setting? existed = await _context.Settings.FirstOrDefaultAsync(s => s.Id == id);
             if (existed == null) return NotFound();
 
-            bool result = await _context.Settings.AnyAsync(s => s.Key.ToLower().Trim() == s.Key.ToLower().Trim() && s.Id != id);
-            if (result)
-            {
-                ModelState.AddModelError("Key", "Key already is exists");
-                return View(vm);
-            }
-            existed.Key = vm.Key;
             existed.Value = vm.Value;
 
             await _context.SaveChangesAsync();
