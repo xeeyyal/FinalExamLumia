@@ -1,0 +1,56 @@
+﻿@model UpdateEmployeeVm 
+
+ <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Employee form</h4>
+                  <form class="forms-sample" method="post" enctype="multipart/form-data">
+                      <div class="form-group">
+                      <img style="width:150px;height:150px" src="~/assets/img/team/@Model.Image" />
+                    </div>
+                    <div class="form-group">
+                      <label asp-for="Photo" for="exampleInputName1">Name</label>
+                      <input asp-for="Photo" class="form-control">
+                      <span class="text-danger" asp-validation-for="Photo"></span>
+                    </div>
+                    <div class="form-group">
+                      <label asp-for="Name">Name</label>
+                      <input asp-for="Name" type="text" class="form-control" placeholder="Name">
+                      <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+                     <div class="form-group">
+                      <label asp-for="Position">Position</label>
+                      <input asp-for="Position" type="text" class="form-control" placeholder="Position">
+                      <span class="text-danger" asp-validation-for="Position"></span>
+                    </div>
+                     <div class="form-group">
+                      <label asp-for="Description">Description</label>
+                      <input asp-for="Description" type="text" class="form-control" placeholder="Description">
+                      <span class="text-danger" asp-validation-for="Description"></span>
+                    </div>
+                     <div class="form-group">
+                      <label asp-for="FbLink">Facebook</label>
+                      <input asp-for="FbLink" type="text" class="form-control" placeholder="Facebook">
+                      <span class="text-danger" asp-validation-for="FbLink"></span>
+                    </div>
+                     <div class="form-group">
+                      <label asp-for="InstaLink">Instagram</label>
+                      <input asp-for="InstaLink" type="text" class="form-control" placeholder="Instagram">
+                      <span class="text-danger" asp-validation-for="InstaLink"></span>
+                    </div>
+                       <div class="form-group">
+                      <label asp-for="TwLink">Twitter</label>
+                      <input asp-for="TwLink" type="text" class="form-control" placeholder="Twitter">
+                      <span class="text-danger" asp-validation-for="TwLink"></span>
+                    </div>
+                         <div class="form-group">
+                      <label asp-for="LinkedinLink">Linkedin</label>
+                      <input asp-for="LinkedinLink" type="text" class="form-control" placeholder="Linkedin">
+                      <span class="text-danger" asp-validation-for="LinkedinLink"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <button asp-action="index" asp-controller="employee" class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
